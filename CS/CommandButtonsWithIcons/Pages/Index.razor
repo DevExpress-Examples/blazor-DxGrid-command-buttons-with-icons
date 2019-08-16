@@ -1,0 +1,52 @@
+﻿@page "/"
+@using CommandButtonsWithIcons.Data
+@inject WeatherForecastService ForecastService
+
+@if (forecasts == null) {
+    <h1>Loading...</h1>
+}
+else {
+<DxDataGrid Data=@forecasts ShowFilterRow=false CssClass="MainGrid" @ref:suppressField @ref="MyGrid"
+            RowUpdating=@((updatingDataItem, newValues) => OnRowUpdating(updatingDataItem, newValues))
+            RowInserting=@((newValues) => OnRowInserting(newValues))>
+    <DxDataGridCommandColumn>
+        <HeaderCellTemplate>
+            <a class="oi oi-plus" @onclick="@(() => MyGrid.StartRowEdit(null))" href="javascript:void();"></a>
+        </HeaderCellTemplate>
+        <CellTemplate>
+            <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartRowEdit(context))" href="javascript:void();"></a>
+            <a class="oi oi-x" @onclick="@(() => Delete(context as WeatherForecast))" href="javascript:void();"></a>
+        </CellTemplate>
+    </DxDataGridCommandColumn>
+    <DxDataGridColumn Field=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)"></DxDataGridColumn>
+    <DxDataGridColumn Field=@nameof(WeatherForecast.TemperatureF) Caption="Temp. (F)"></DxDataGridColumn>
+    <DxDataGridComboBoxColumn Field=@nameof(WeatherForecast.Summary) Caption="Summary" Data=@summaries></DxDataGridComboBoxColumn>
+    <DxDataGridDateEditColumn Field=@nameof(WeatherForecast.Date) DisplayFormatString="dd/MM/yyyy"
+                              EditFormatString="dd/MM/yyyy"></DxDataGridDateEditColumn>
+</DxDataGrid>
+}
+@functions {
+    WeatherForecast[] forecasts;
+    string[] summaries;
+    DevExpress.Blazor.DxDataGrid<WeatherForecast> MyGrid;
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync();
+        summaries = await ForecastService.GetSummariesAsync();
+    }
+
+    async void OnRowUpdating(WeatherForecast dataItem, Dictionary<string, object> newValue) {
+        forecasts = await ForecastService.Update(dataItem, newValue);
+        await InvokeAsync(StateHasChanged);
+    }
+    async void OnRowInserting(Dictionary<string, object> newValue) {
+        forecasts = await ForecastService.Insert(newValue);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    async void Delete(WeatherForecast item) {
+        if (item != null) {
+            forecasts = await ForecastService.Remove(item);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}
