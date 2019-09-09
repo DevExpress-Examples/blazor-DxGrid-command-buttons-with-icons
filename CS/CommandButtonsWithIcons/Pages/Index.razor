@@ -6,7 +6,7 @@
     <h1>Loading...</h1>
 }
 else {
-<DxDataGrid Data=@forecasts ShowFilterRow=false CssClass="MainGrid" @ref:suppressField @ref="MyGrid"
+<DxDataGrid Data=@forecasts ShowFilterRow=false CssClass="MainGrid" @ref="MyGrid"
             RowUpdating=@((updatingDataItem, newValues) => OnRowUpdating(updatingDataItem, newValues))
             RowInserting=@((newValues) => OnRowInserting(newValues))>
     <DxDataGridCommandColumn>
