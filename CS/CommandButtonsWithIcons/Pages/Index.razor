@@ -36,17 +36,14 @@ else {
 
     async void OnRowUpdating(WeatherForecast dataItem, Dictionary<string, object> newValue) {
         forecasts = await ForecastService.Update(dataItem, newValue);
-        await InvokeAsync(StateHasChanged);
     }
     async void OnRowInserting(Dictionary<string, object> newValue) {
         forecasts = await ForecastService.Insert(newValue);
-        await InvokeAsync(StateHasChanged);
     }
 
     async void Delete(WeatherForecast item) {
         if (item != null) {
             forecasts = await ForecastService.Remove(item);
-            await InvokeAsync(StateHasChanged);
         }
     }
 }
