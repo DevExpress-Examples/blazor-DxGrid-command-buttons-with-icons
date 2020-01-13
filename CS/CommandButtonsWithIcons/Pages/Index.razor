@@ -11,11 +11,11 @@ else {
             RowInserting=@((newValues) => OnRowInserting(newValues))>
     <DxDataGridCommandColumn>
         <HeaderCellTemplate>
-            <a class="oi oi-plus" @onclick="@(() => MyGrid.StartRowEdit(null))" href="javascript:void();"></a>
+            <a class="oi oi-plus" @onclick="@(() => MyGrid.StartRowEdit(null))" href="javascript:void(0);"></a>
         </HeaderCellTemplate>
         <CellTemplate>
-            <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartRowEdit(context))" href="javascript:void();"></a>
-            <a class="oi oi-x" @onclick="@(() => Delete(context as WeatherForecast))" href="javascript:void();"></a>
+            <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartRowEdit(context))" href="javascript:void(0);"></a>
+            <a class="oi oi-x" @onclick="@(() => Delete(context as WeatherForecast))" href="javascript:void(0);"></a>
         </CellTemplate>
     </DxDataGridCommandColumn>
     <DxDataGridColumn Field=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)"></DxDataGridColumn>
