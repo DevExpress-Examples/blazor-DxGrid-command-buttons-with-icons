@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CommandButtonsWithIcons.Data
@@ -26,29 +27,29 @@ namespace CommandButtonsWithIcons.Data
         public WeatherForecastService() {
             Forecasts = CreateForecast();
         }
-        public Task<WeatherForecast[]> GetForecastAsync() {
-            return Task.FromResult(Forecasts.ToArray());
+        public Task<IEnumerable<WeatherForecast>> GetForecastAsync(CancellationToken ct = default) {
+            return Task.FromResult<IEnumerable<WeatherForecast>>(Forecasts);
         }
         public Task<string[]> GetSummariesAsync() {
             return Task.FromResult(Summaries);
         }
-        WeatherForecast[] InsertInternal(Dictionary<string, object> newValue) {
+        void InsertInternal(IDictionary<string, object> newValue) {
             var dataItem = new WeatherForecast();
             Update(dataItem, newValue);
             Forecasts.Insert(0, dataItem);
-            return Forecasts.ToArray();
         }
-        public Task<WeatherForecast[]> Insert(Dictionary<string, object> newValue) {
-            return Task.FromResult(InsertInternal(newValue));
+        public Task Insert(IDictionary<string, object> newValue) {
+            InsertInternal(newValue);
+            return Task.CompletedTask;
         }
-        WeatherForecast[] RemoveInternal(WeatherForecast dataItem) {
+        void RemoveInternal(WeatherForecast dataItem) {
             Forecasts.Remove(dataItem);
-            return Forecasts.ToArray();
         }
-        public Task<WeatherForecast[]> Remove(WeatherForecast dataItem) {
-            return Task.FromResult(RemoveInternal(dataItem));
+        public Task Remove(WeatherForecast dataItem) {
+            RemoveInternal(dataItem);
+            return Task.CompletedTask;
         }
-        WeatherForecast[] UpdateInternal(WeatherForecast dataItem, Dictionary<string, object> newValue) {
+        void UpdateInternal(WeatherForecast dataItem, IDictionary<string, object> newValue) {
             foreach (var field in newValue.Keys) {
                 switch (field) {
                     case "Date":
@@ -65,10 +66,10 @@ namespace CommandButtonsWithIcons.Data
                         break;
                 }
             }
-            return Forecasts.ToArray();
         }
-        public Task<WeatherForecast[]> Update(WeatherForecast dataItem, Dictionary<string, object> newValue) {
-            return Task.FromResult(UpdateInternal(dataItem, newValue));
+        public Task Update(WeatherForecast dataItem, IDictionary<string, object> newValue) {
+            UpdateInternal(dataItem, newValue);
+            return Task.CompletedTask;
         }
     }
 }
