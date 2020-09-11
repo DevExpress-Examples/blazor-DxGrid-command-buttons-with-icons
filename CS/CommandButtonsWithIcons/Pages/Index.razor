@@ -2,7 +2,7 @@
 @using CommandButtonsWithIcons.Data
 @inject WeatherForecastService ForecastService
 
-<DxDataGrid DataAsync="@ForecastService.GetForecastAsync" ShowFilterRow="false" CssClass="MainGrid" @ref="MyGrid"
+<DxDataGrid Data="DataSource" ShowFilterRow="false" CssClass="MainGrid" @ref="MyGrid"
             RowUpdatingAsync="@ForecastService.Update"
             RowInsertingAsync="@ForecastService.Insert"
             InitNewRow="@OnInitNewRow">
@@ -24,9 +24,11 @@
 </DxDataGrid>
 @code {
     string[] summaries;
+    List<WeatherForecast> DataSource = new List<WeatherForecast>();
     DevExpress.Blazor.DxDataGrid<WeatherForecast> MyGrid;
-    protected override async Task OnInitializedAsync() {
-        summaries = await ForecastService.GetSummariesAsync();
+    protected override void OnInitialized() {
+        DataSource = ForecastService.Forecasts;
+        summaries = ForecastService.Summaries;
     }
     async Task Delete(WeatherForecast item) {
         if (item != null) {

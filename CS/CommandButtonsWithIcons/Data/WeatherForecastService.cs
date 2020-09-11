@@ -8,7 +8,7 @@ namespace CommandButtonsWithIcons.Data
 {
     public class WeatherForecastService
     {
-        private static string[] Summaries = new[]
+        public string[] Summaries = new[]
         {
             "Hot", "Warm", "Cold", "Freezing"
         };
@@ -23,7 +23,7 @@ namespace CommandButtonsWithIcons.Data
             }).ToList();
         }
 
-        private List<WeatherForecast> Forecasts { get; set; }
+        public List<WeatherForecast> Forecasts { get; set; }
         public WeatherForecastService() {
             Forecasts = CreateForecast();
         }
