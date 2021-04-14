@@ -18,8 +18,7 @@
     <DxDataGridColumn Field=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)"></DxDataGridColumn>
     <DxDataGridColumn Field=@nameof(WeatherForecast.TemperatureF) Caption="Temp. (F)"></DxDataGridColumn>
     <DxDataGridComboBoxColumn Field=@nameof(WeatherForecast.Summary) Caption="Summary" Data=@summaries></DxDataGridComboBoxColumn>
-    <DxDataGridDateEditColumn Field=@nameof(WeatherForecast.Date) DisplayFormatString="dd/MM/yyyy"
-                              EditFormatString="dd/MM/yyyy">
+    <DxDataGridDateEditColumn Field=@nameof(WeatherForecast.Date) DisplayFormat="dd/MM/yyyy" EditorFormat="dd/MM/yyyy">
     </DxDataGridDateEditColumn>
 </DxDataGrid>
 @code {
