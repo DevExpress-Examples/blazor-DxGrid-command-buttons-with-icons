@@ -4,7 +4,7 @@
 * [Index.razor](./CS/CommandButtonsWithIcons/Pages/Index.razor)
 <!-- default file list end -->
 
-### Blazor Data Grid - How to use icons instead of default command buttons
+### Blazor Data Grid - How to use icons instead of default command buttons 
 
 At the moment, our DataGrid for Blazor doesn't support any API to customize command button appearance.
 
