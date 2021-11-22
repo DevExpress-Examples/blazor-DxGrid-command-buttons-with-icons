@@ -5,11 +5,12 @@
 
 # Blazor Data Grid - Use icons instead of default command buttons
 
-At the moment, our DataGrid for Blazor doesn't support any API to customize command button appearance. However, you can use templates to change appearance of command buttons.
+Currently, our DataGrid for Blazor does not support any API to customize command button appearance. However, you can use templates instead.
 
 ![Data Grid with Custom Icons](images/datagrid-command-icons.png)
 
-It's possible to place any content into the command column's [CellTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridCommandColumn.CellTemplate) or [HeaderCellTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridCommandColumn.HeaderCellTemplate) template, for example, <button> or <a> HTML elements.
+You can add content to the command column's [CellTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridCommandColumn.CellTemplate) or [HeaderCellTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridCommandColumn.HeaderCellTemplate) template, for example, <button> or <a> HTML elements.
+
 Handle the corresponding event and use the [StartRowEdit](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGrid-1.StartRowEdit(System.Object)) method to implement the necessary functionality. Send the following input parameters:
 
 * A *null* object if you want to create a new record
