@@ -6,6 +6,8 @@
 
 # Blazor Data Grid - Use icons instead of default command buttons
 
+The Data Grid was moved to maintenance support mode. No new features/capabilities will be added to this component. We recommend that you [migrate](https://docs.devexpress.com/Blazor/403162/grid/migrate-from-data-grid-to-grid) to the [Grid](https://docs.devexpress.com/Blazor/403143/grid) component. 
+
 Currently, our DataGrid for Blazor does not support any API to customize command button appearance. However, you can use templates instead.
 
 ![Data Grid with Custom Icons](images/datagrid-command-icons.png)
