@@ -1,13 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace CommandButtonsWithIcons.Data
-{
-    public class WeatherForecastService
-    {
+namespace CommandButtonsWithIcons.Data {
+    public class WeatherForecastService {
         public string[] Summaries = new[]
         {
             "Hot", "Warm", "Cold", "Freezing"

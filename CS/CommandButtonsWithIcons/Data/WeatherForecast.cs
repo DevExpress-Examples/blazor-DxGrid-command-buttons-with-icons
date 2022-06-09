@@ -1,5 +1,3 @@
-using System;
-
 namespace CommandButtonsWithIcons.Data
 {
     public class WeatherForecast
@@ -8,8 +6,8 @@ namespace CommandButtonsWithIcons.Data
 
         public int TemperatureC { get; set; }
 
-        public double TemperatureF => Math.Round((TemperatureC * 1.8 + 32), 2);
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
-        public string Summary { get; set; }
+        public string? Summary { get; set; }
     }
 }

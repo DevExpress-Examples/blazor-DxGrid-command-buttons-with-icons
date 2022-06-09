@@ -2,17 +2,20 @@
 @using CommandButtonsWithIcons.Data
 @inject WeatherForecastService ForecastService
 
-<DxDataGrid Data="DataSource" ShowFilterRow="false" CssClass="MainGrid" @ref="MyGrid"
+<DxDataGrid Data="DataSource" 
+            ShowFilterRow="false" 
+            CssClass="MainGrid" 
+            @ref="MyGrid"
             RowUpdatingAsync="@ForecastService.Update"
             RowInsertingAsync="@ForecastService.Insert"
             InitNewRow="@OnInitNewRow">
     <DxDataGridCommandColumn>
         <HeaderCellTemplate>
-            <a class="oi oi-plus" @onclick="@(() => MyGrid.StartRowEdit(null))" href="javascript:void(0);"></a>
+            <a class="oi oi-plus" style="text-decoration: none;" @onclick="@(() => MyGrid.StartRowEdit(null))" href="javascript:void(0);"></a>
         </HeaderCellTemplate>
         <CellTemplate>
-            <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartRowEdit(context))" href="javascript:void(0);"></a>
-            <a class="oi oi-x" @onclick="@(() => Delete(context as WeatherForecast))" href="javascript:void(0);"></a>
+            <a class="oi oi-pencil" style="text-decoration: none;" @onclick="@(() => MyGrid.StartRowEdit(context))" href="javascript:void(0);"></a>
+            <a class="oi oi-x" style="text-decoration: none;" @onclick="@(() => Delete(context as WeatherForecast))" href="javascript:void(0);"></a>
         </CellTemplate>
     </DxDataGridCommandColumn>
     <DxDataGridColumn Field=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)"></DxDataGridColumn>
@@ -21,10 +24,11 @@
     <DxDataGridDateEditColumn Field=@nameof(WeatherForecast.Date) DisplayFormat="dd/MM/yyyy" EditorFormat="dd/MM/yyyy">
     </DxDataGridDateEditColumn>
 </DxDataGrid>
+
 @code {
-    string[] summaries;
+    string[]? summaries;
     List<WeatherForecast> DataSource = new List<WeatherForecast>();
-    DevExpress.Blazor.DxDataGrid<WeatherForecast> MyGrid;
+    DevExpress.Blazor.DxDataGrid<WeatherForecast>? MyGrid;
     protected override void OnInitialized() {
         DataSource = ForecastService.Forecasts;
         summaries = ForecastService.Summaries;

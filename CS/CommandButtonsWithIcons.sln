@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29123.89
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32002.185
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandButtonsWithIcons", "CommandButtonsWithIcons\CommandButtonsWithIcons.csproj", "{551D75C5-D69A-4256-98DF-1E5ACB542DCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandButtonsWithIcons", "CommandButtonsWithIcons\CommandButtonsWithIcons.csproj", "{BA6242D4-F1A0-488A-BD88-E73FF0D3F1FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{551D75C5-D69A-4256-98DF-1E5ACB542DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{551D75C5-D69A-4256-98DF-1E5ACB542DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{551D75C5-D69A-4256-98DF-1E5ACB542DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{551D75C5-D69A-4256-98DF-1E5ACB542DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA6242D4-F1A0-488A-BD88-E73FF0D3F1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA6242D4-F1A0-488A-BD88-E73FF0D3F1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA6242D4-F1A0-488A-BD88-E73FF0D3F1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA6242D4-F1A0-488A-BD88-E73FF0D3F1FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {91359EF6-0F1B-4BB5-B5EC-6D057DE2C21C}
+		SolutionGuid = {40CF3232-4C4F-414A-B9F6-D19D34806473}
 	EndGlobalSection
 EndGlobal
