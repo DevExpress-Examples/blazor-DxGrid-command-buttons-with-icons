@@ -23,7 +23,7 @@ Use the *context* object to obtain the current row object in the column's [CellT
 
 ```razor
 <CellTemplate>
-    <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartRowEdit(context))" href="javascript:void(0);"></a>
+    <a class="oi oi-pencil" style="text-decoration: none;" @onclick="@(() => MyGrid.StartRowEdit(context))" href="javascript:void(0);"></a>
     @* ... *@
 </CellTemplate>
 ```
