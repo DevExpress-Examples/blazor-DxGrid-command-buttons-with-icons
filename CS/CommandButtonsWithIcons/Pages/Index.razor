@@ -2,44 +2,57 @@
 @using CommandButtonsWithIcons.Data
 @inject WeatherForecastService ForecastService
 
-<DxDataGrid Data="DataSource" 
-            ShowFilterRow="false" 
-            CssClass="MainGrid" 
-            @ref="MyGrid"
-            RowUpdatingAsync="@ForecastService.Update"
-            RowInsertingAsync="@ForecastService.Insert"
-            InitNewRow="@OnInitNewRow">
-    <DxDataGridCommandColumn>
-        <HeaderCellTemplate>
-            <a class="oi oi-plus" style="text-decoration: none;" @onclick="@(() => MyGrid.StartRowEdit(null))" href="javascript:void(0);"></a>
-        </HeaderCellTemplate>
-        <CellTemplate>
-            <a class="oi oi-pencil" style="text-decoration: none;" @onclick="@(() => MyGrid.StartRowEdit(context))" href="javascript:void(0);"></a>
-            <a class="oi oi-x" style="text-decoration: none;" @onclick="@(() => Delete(context as WeatherForecast))" href="javascript:void(0);"></a>
-        </CellTemplate>
-    </DxDataGridCommandColumn>
-    <DxDataGridColumn Field=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)"></DxDataGridColumn>
-    <DxDataGridColumn Field=@nameof(WeatherForecast.TemperatureF) Caption="Temp. (F)"></DxDataGridColumn>
-    <DxDataGridComboBoxColumn Field=@nameof(WeatherForecast.Summary) Caption="Summary" Data=@summaries></DxDataGridComboBoxColumn>
-    <DxDataGridDateEditColumn Field=@nameof(WeatherForecast.Date) DisplayFormat="dd/MM/yyyy" EditorFormat="dd/MM/yyyy">
-    </DxDataGridDateEditColumn>
-</DxDataGrid>
+<DxGrid Data="forecasts" 
+        @ref="MyGrid" 
+        KeyFieldName="ID" 
+        EditModelSaving="OnEditModelSaving">
+    <Columns>
+        <DxGridCommandColumn>
+            <HeaderTemplate>
+                <a class="oi oi-plus" @onclick="@(() => MyGrid.StartEditNewRowAsync())" style="text-decoration: none;" href="javascript:void(0);"></a>
+            </HeaderTemplate>
+            <CellDisplayTemplate>
+                <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartEditRowAsync(context.VisibleIndex))" style="text-decoration: none;" href="javascript:void(0);"></a>
+                <a class="oi oi-x" @onclick="@(() => Delete((WeatherForecast)context.DataItem))" style="text-decoration: none;" href="javascript:void(0);"></a>
+            </CellDisplayTemplate>
+        </DxGridCommandColumn>
+        <DxGridDataColumn FieldName=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)" />
+        <DxGridDataColumn FieldName=@nameof(WeatherForecast.TemperatureF) Caption="Temp. (F)" />
+        <DxGridDataColumn FieldName=@nameof(WeatherForecast.Summary) Caption="Summary" />
+        <DxGridDataColumn FieldName=@nameof(WeatherForecast.Date) DisplayFormat="dd/MM/yyyy" />
+    </Columns>
+    <EditFormTemplate Context="EditFormContext">
+        @{
+            var forecast = (WeatherForecast)EditFormContext.EditModel;
+        }
+        <DxFormLayout>
+            <DxFormLayoutItem Caption="Temp. (C)">
+                <DxSpinEdit @bind-Value=forecast.TemperatureC />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem>
+                <DxComboBox Data=@summaries @bind-Value=@forecast.Summary />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem>
+                <DxDateEdit @bind-Date=@forecast.Date />
+            </DxFormLayoutItem>
+        </DxFormLayout>
+    </EditFormTemplate>
+</DxGrid>
 
 @code {
     string[]? summaries;
-    List<WeatherForecast> DataSource = new List<WeatherForecast>();
-    DevExpress.Blazor.DxDataGrid<WeatherForecast>? MyGrid;
-    protected override void OnInitialized() {
-        DataSource = ForecastService.Forecasts;
+    private List<WeatherForecast>? forecasts;
+    DxGrid? MyGrid;
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync();
         summaries = ForecastService.Summaries;
+    }
+    async Task OnEditModelSaving(GridEditModelSavingEventArgs e) {
+        forecasts = await ForecastService.ChangeForecastAsync((WeatherForecast)e.EditModel);
     }
     async Task Delete(WeatherForecast item) {
         if (item != null) {
             await ForecastService.Remove(item);
         }
-    }
-    Task OnInitNewRow(Dictionary<string, object> values) {
-        values.Add("Date", DateTime.Now);
-        return Task.CompletedTask;
     }
 }
