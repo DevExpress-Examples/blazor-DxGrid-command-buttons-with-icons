@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-# Blazor Data Grid - Use icons instead of default command buttons
+# Blazor Grid - Use icons instead of default command buttons
 
 Currently, our Grid for Blazor does not support any API to customize command button appearance. However, you can use templates instead.
 
