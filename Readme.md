@@ -6,26 +6,24 @@
 
 # Blazor Data Grid - Use icons instead of default command buttons
 
-The Data Grid was moved to maintenance support mode. No new features/capabilities will be added to this component. We recommend that you [migrate](https://docs.devexpress.com/Blazor/403162/grid/migrate-from-data-grid-to-grid) to the [Grid](https://docs.devexpress.com/Blazor/403143/grid) component. 
+Currently, our Grid for Blazor does not support any API to customize command button appearance. However, you can use templates instead.
 
-Currently, our DataGrid for Blazor does not support any API to customize command button appearance. However, you can use templates instead.
+![Grid with Custom Icons](images/datagrid-command-icons.png)
 
-![Data Grid with Custom Icons](images/datagrid-command-icons.png)
+You can add content to the command column's [CellDisplayTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.CellDisplayTemplate) or [HeaderTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.HeaderTemplate), for example, <button> or <a> HTML elements.
 
-You can add content to the command column's [CellTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridCommandColumn.CellTemplate) or [HeaderCellTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridCommandColumn.HeaderCellTemplate) template, for example, <button> or <a> HTML elements.
-
-Handle the corresponding event and use the [StartRowEdit](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGrid-1.StartRowEdit(System.Object)) method to implement the necessary functionality. Send the following input parameters:
+Handle the corresponding event and use the [StartEditNewRowAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.StartEditNewRowAsync) and [StartEditDataItemAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.StartEditDataItemAsync(System.Object)) methods to implement the necessary functionality. Send the following input parameters:
 
 * A *null* object if you want to create a new record
 * The existing object if you edit a record
 
-Use the *context* object to obtain the current row object in the column's [CellTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridCommandColumn.CellTemplate) template:
+Use the *context* object to obtain the current row object in the column's [CellDisplayTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.CellDisplayTemplate):
 
 ```razor
-<CellTemplate>
-    <a class="oi oi-pencil" style="text-decoration: none;" @onclick="@(() => MyGrid.StartRowEdit(context))" href="javascript:void(0);"></a>
-    @* ... *@
-</CellTemplate>
+<CellDisplayTemplate>
+    <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartEditRowAsync(context.VisibleIndex))" style="text-decoration: none;" href="javascript:void(0);"></a>
+    <a class="oi oi-x" @onclick="@(() => Delete((WeatherForecast)context.DataItem))" style="text-decoration: none;" href="javascript:void(0);"></a>
+</CellDisplayTemplate>
 ```
 
 <!-- default file list -->
@@ -36,11 +34,4 @@ Use the *context* object to obtain the current row object in the column's [CellT
 
 ## Documentation
 
-- [CellTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridCommandColumn.CellTemplate)
-- [HeaderCellTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridCommandColumn.HeaderCellTemplate)
-- [EditTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridColumn.EditTemplate)
-- [DisplayTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxDataGridColumn.DisplayTemplate)
-
-## More Examples
-
-- [DataGrid - Edit Data On a Separate Page](https://github.com/DevExpress-Examples/blazor-DxDataGrid-Separate-Edit-Form)
+[Grid - Appearance](https://docs.devexpress.com/Blazor/403143/grid?v=22.1#appearance)
