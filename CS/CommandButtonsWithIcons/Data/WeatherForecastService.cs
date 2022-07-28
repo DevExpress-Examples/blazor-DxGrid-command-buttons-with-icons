@@ -6,12 +6,12 @@ namespace CommandButtonsWithIcons.Data {
         private List<WeatherForecast>? Forecasts;
         public Task<List<WeatherForecast>> GetForecastAsync() {
             if (Forecasts == null) {
-                var rng = new Random();
+                var rnd = new Random();
                 Forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast {
                     ID = index,
                     Date = DateTime.Today.AddDays(index),
-                    TemperatureC = rng.Next(-20, 55),
-                    Summary = Summaries[rng.Next(Summaries.Length)]
+                    TemperatureC = rnd.Next(-20, 55),
+                    Summary = Summaries[rnd.Next(Summaries.Length)]
                 }).ToList();
             }
             return Task.FromResult(Forecasts);
