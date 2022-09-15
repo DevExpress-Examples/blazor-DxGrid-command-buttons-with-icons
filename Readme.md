@@ -6,13 +6,13 @@
 
 # Blazor Grid - Use icons instead of default command buttons
 
-Currently, our Grid for Blazor does not support any API to customize command button appearance. However, you can use templates instead.
+Use templates to modify command button appearance within the DevExpress Blazor Grid.
 
 ![Grid with Custom Icons](images/datagrid-command-icons.png)
 
-You can add content to the command column's [CellDisplayTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.CellDisplayTemplate) or [HeaderTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.HeaderTemplate), for example, <button> or <a> HTML elements.
+For example, you can add content to the command column's [CellDisplayTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.CellDisplayTemplate) or [HeaderTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.HeaderTemplate) (HTML elements).
 
-Handle the corresponding event and use the [StartEditNewRowAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.StartEditNewRowAsync) and [StartEditDataItemAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.StartEditDataItemAsync(System.Object)) methods to implement the necessary functionality. Send the following input parameters:
+You'll need to handle the corresponding event and use the [StartEditNewRowAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.StartEditNewRowAsync) and [StartEditDataItemAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.StartEditDataItemAsync(System.Object)) methods to implement appropriate functionality. Remember to send the following input parameters:
 
 * A *null* object if you want to create a new record
 * The existing object if you edit a record
@@ -27,7 +27,7 @@ Use the *context* object to obtain the current row object in the column's [CellD
 ```
 
 <!-- default file list -->
-## Files to look at
+## Files to Review
 
 * [Index.razor](./CS/CommandButtonsWithIcons/Pages/Index.razor)
 <!-- default file list end -->
