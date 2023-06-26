@@ -22,18 +22,18 @@
         <DxGridDataColumn FieldName=@nameof(WeatherForecast.Date) DisplayFormat="dd/MM/yyyy" />
     </Columns>
     <EditFormTemplate Context="EditFormContext">
-        @{
-            var forecast = (WeatherForecast)EditFormContext.EditModel;
-        }
         <DxFormLayout>
             <DxFormLayoutItem Caption="Temp. (C)">
-                <DxSpinEdit @bind-Value=forecast.TemperatureC />
+                @EditFormContext.GetEditor("TemperatureC")
             </DxFormLayoutItem>
-            <DxFormLayoutItem>
-                <DxComboBox Data=@summaries @bind-Value=@forecast.Summary />
+            <DxFormLayoutItem Caption="Temp. (F)">
+                @EditFormContext.GetEditor("TemperatureF")
             </DxFormLayoutItem>
-            <DxFormLayoutItem>
-                <DxDateEdit @bind-Date=@forecast.Date />
+            <DxFormLayoutItem Caption="Summary">
+                @EditFormContext.GetEditor("Summary")
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Date">
+                @EditFormContext.GetEditor("Date")
             </DxFormLayoutItem>
         </DxFormLayout>
     </EditFormTemplate>
