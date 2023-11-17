@@ -22,7 +22,7 @@ Use the *context* object to obtain the current row object in the column's [CellD
 ```razor
 <CellDisplayTemplate>
     <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartEditRowAsync(context.VisibleIndex))" style="text-decoration: none;" href="javascript:void(0);"></a>
-    <a class="oi oi-x" @onclick="@(() => Delete((WeatherForecast)context.DataItem))" style="text-decoration: none;" href="javascript:void(0);"></a>
+    <a class="oi oi-x" @onclick="@(() => MyGrid.ShowDataItemDeleteConfirmation(context.DataItem))" style="text-decoration: none;" href="javascript:void(0);"></a>
 </CellDisplayTemplate>
 ```
 

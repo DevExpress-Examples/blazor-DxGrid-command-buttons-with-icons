@@ -5,6 +5,7 @@
 <DxGrid Data="forecasts" 
         @ref="MyGrid" 
         KeyFieldName="ID" 
+        DataItemDeleting="OnDataItemDeleting"
         EditModelSaving="OnEditModelSaving">
     <Columns>
         <DxGridCommandColumn>
@@ -13,7 +14,7 @@
             </HeaderTemplate>
             <CellDisplayTemplate>
                 <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartEditRowAsync(context.VisibleIndex))" style="text-decoration: none;" href="javascript:void(0);"></a>
-                <a class="oi oi-x" @onclick="@(() => Delete((WeatherForecast)context.DataItem))" style="text-decoration: none;" href="javascript:void(0);"></a>
+                <a class="oi oi-x" @onclick="@(() => MyGrid.ShowDataItemDeleteConfirmation(context.DataItem))" style="text-decoration: none;" href="javascript:void(0);"></a>
             </CellDisplayTemplate>
         </DxGridCommandColumn>
         <DxGridDataColumn FieldName=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)" />
@@ -25,9 +26,6 @@
         <DxFormLayout>
             <DxFormLayoutItem Caption="Temp. (C)">
                 @EditFormContext.GetEditor("TemperatureC")
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Temp. (F)">
-                @EditFormContext.GetEditor("TemperatureF")
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="Summary">
                 @EditFormContext.GetEditor("Summary")
@@ -50,9 +48,8 @@
     async Task OnEditModelSaving(GridEditModelSavingEventArgs e) {
         forecasts = await ForecastService.ChangeForecastAsync((WeatherForecast)e.EditModel);
     }
-    async Task Delete(WeatherForecast item) {
-        if (item != null) {
-            await ForecastService.Remove(item);
-        }
+    async Task OnDataItemDeleting(GridDataItemDeletingEventArgs e) {
+        if (e.DataItem != null)
+            await ForecastService.Remove((WeatherForecast)e.DataItem);
     }
 }
