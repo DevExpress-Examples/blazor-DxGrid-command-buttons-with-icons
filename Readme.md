@@ -35,7 +35,7 @@ Use the *context* object to obtain the current row object in the column's [CellD
 
 ## Documentation
 
-[Grid - Appearance](https://docs.devexpress.com/Blazor/403143/grid?v=22.1#appearance)
+[Grid - Appearance](https://docs.devexpress.com/Blazor/403143/components/grid#appearance)
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?
 
@@ -43,3 +43,4 @@ Use the *context* object to obtain the current row object in the column's [CellD
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
