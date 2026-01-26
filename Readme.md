@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
 
-# Blazor Grid - Use Custom Icons As Command Buttons
+# Blazor Grid - Use Custom Icons as Command Buttons
 
 A [command column](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn) displays predefined **New**, **Edit**, and **Delete** command buttons (as icons) for data rows in display mode. In `EditRow` and `EditCell` edit modes, this column displays **Save** and **Cancel** buttons for the edited row. You can use [HeaderTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.HeaderTemplate), [CellDisplayTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.CellDisplayTemplate), or [CellEditTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridCommandColumn.CellEditTemplate) to change command button appearance within the DevExpress Blazor Grid.
 
