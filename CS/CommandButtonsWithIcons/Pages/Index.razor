@@ -2,40 +2,42 @@
 @using CommandButtonsWithIcons.Data
 @inject WeatherForecastService ForecastService
 
-<DxGrid Data="forecasts" 
-        @ref="MyGrid" 
-        KeyFieldName="ID" 
-        DataItemDeleting="OnDataItemDeleting"
-        EditModelSaving="OnEditModelSaving">
-    <Columns>
-        <DxGridCommandColumn>
-            <HeaderTemplate>
-                <a class="oi oi-plus" @onclick="@(() => MyGrid.StartEditNewRowAsync())" style="text-decoration: none;" href="javascript:void(0);"></a>
-            </HeaderTemplate>
-            <CellDisplayTemplate>
-                <a class="oi oi-pencil" @onclick="@(() => MyGrid.StartEditRowAsync(context.VisibleIndex))" style="text-decoration: none;" href="javascript:void(0);"></a>
-                <a class="oi oi-x" @onclick="@(() => MyGrid.ShowDataItemDeleteConfirmation(context.DataItem))" style="text-decoration: none;" href="javascript:void(0);"></a>
-            </CellDisplayTemplate>
-        </DxGridCommandColumn>
-        <DxGridDataColumn FieldName=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)" />
-        <DxGridDataColumn FieldName=@nameof(WeatherForecast.TemperatureF) Caption="Temp. (F)" />
-        <DxGridDataColumn FieldName=@nameof(WeatherForecast.Summary) Caption="Summary" />
-        <DxGridDataColumn FieldName=@nameof(WeatherForecast.Date) DisplayFormat="dd/MM/yyyy" />
-    </Columns>
-    <EditFormTemplate Context="EditFormContext">
-        <DxFormLayout>
-            <DxFormLayoutItem Caption="Temp. (C)">
-                @EditFormContext.GetEditor("TemperatureC")
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Summary">
-                @EditFormContext.GetEditor("Summary")
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="Date">
-                @EditFormContext.GetEditor("Date")
-            </DxFormLayoutItem>
-        </DxFormLayout>
-    </EditFormTemplate>
-</DxGrid>
+<div>
+    <DxGrid Data="forecasts" 
+            @ref="MyGrid" 
+            KeyFieldName="ID" 
+            DataItemDeleting="OnDataItemDeleting"
+            EditModelSaving="OnEditModelSaving">
+        <Columns>
+            <DxGridCommandColumn>
+                <HeaderTemplate>
+                    <a class="oi oi-plus link-decoration" @onclick="@(() => MyGrid.StartEditNewRowAsync())" href="javascript:void(0);"></a>
+                </HeaderTemplate>
+                <CellDisplayTemplate>
+                    <a class="oi oi-pencil link-decoration" @onclick="@(() => MyGrid.StartEditRowAsync(context.VisibleIndex))" href="javascript:void(0);"></a>
+                    <a class="oi oi-x link-decoration" @onclick="@(() => MyGrid.ShowDataItemDeleteConfirmation(context.DataItem))" href="javascript:void(0);"></a>
+                </CellDisplayTemplate>
+            </DxGridCommandColumn>
+            <DxGridDataColumn FieldName=@nameof(WeatherForecast.TemperatureC) Caption="Temp. (C)" />
+            <DxGridDataColumn FieldName=@nameof(WeatherForecast.TemperatureF) Caption="Temp. (F)" />
+            <DxGridDataColumn FieldName=@nameof(WeatherForecast.Summary) Caption="Summary" />
+            <DxGridDataColumn FieldName=@nameof(WeatherForecast.Date) DisplayFormat="dd/MM/yyyy" />
+        </Columns>
+        <EditFormTemplate Context="EditFormContext">
+            <DxFormLayout>
+                <DxFormLayoutItem Caption="Temp. (C)">
+                    @EditFormContext.GetEditor("TemperatureC")
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Summary">
+                    @EditFormContext.GetEditor("Summary")
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Date">
+                    @EditFormContext.GetEditor("Date")
+                </DxFormLayoutItem>
+            </DxFormLayout>
+        </EditFormTemplate>
+    </DxGrid>
+</div>
 
 @code {
     string[]? summaries;
